@@ -1,7 +1,18 @@
-// Live Restaurant Status Manager for MELT Burgers (Dehiwala & Colombo 03)
-// Operating Hours:
-// - Monday – Sunday (Daily): 1:30 PM – 11:00 PM
-// - Dine In + Takeaway | 100% Halal
+// ==========================================================================
+// CAFE TEMPLATE — Live Cafe Status Manager
+// Configures real-time "Open / Closed" badge and operating hours calculation.
+// ==========================================================================
+
+export const CAFE_HOURS_CONFIG = {
+  weekdayOpen: 7.5,    // 7:30 AM
+  weekdayClose: 21.0,  // 9:00 PM
+  weekendOpen: 8.0,    // 8:00 AM
+  weekendClose: 22.0,  // 10:00 PM
+  openText: 'Open Today',
+  openSubText: 'Closes 9:00 PM · Coffee, Brunch & Bakery',
+  closedText: 'Closed Now',
+  closedSubText: 'Opens 7:30 AM · Fresh Roasts & Breakfast'
+};
 
 export function initAmbiance() {
   updateCafeStatus();
@@ -9,42 +20,20 @@ export function initAmbiance() {
   setInterval(updateCafeStatus, 30000);
 }
 
-// Get Sri Lanka local time (Asia/Colombo)
-function getSriLankaTime() {
+function getLocalClientTime() {
   const now = new Date();
-  try {
-    const formatter = new Intl.DateTimeFormat('en-US', {
-      timeZone: 'Asia/Colombo',
-      hour12: false,
-      weekday: 'short',
-      hour: 'numeric',
-      minute: 'numeric',
-    });
-    const parts = formatter.formatToParts(now);
-    let weekday = 'Thu';
-    let hour = now.getHours();
-    let minute = now.getMinutes();
-
-    for (const p of parts) {
-      if (p.type === 'weekday') weekday = p.value;
-      if (p.type === 'hour') hour = parseInt(p.value, 10);
-      if (p.type === 'minute') minute = parseInt(p.value, 10);
-    }
-    if (hour === 24) hour = 0;
-    return { weekday, hour, minute, decimalTime: hour + minute / 60 };
-  } catch (e) {
-    // Fallback to local time if Intl timeZone fails
-    const days = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
-    return {
-      weekday: days[now.getDay()],
-      hour: now.getHours(),
-      minute: now.getMinutes(),
-      decimalTime: now.getHours() + now.getMinutes() / 60,
-    };
-  }
+  const day = now.getDay();
+  const isWeekend = day === 0 || day === 6;
+  const hour = now.getHours();
+  const minute = now.getMinutes();
+  return {
+    isWeekend,
+    hour,
+    minute,
+    decimalTime: hour + minute / 60
+  };
 }
 
-// Live MELT Restaurant Open/Closed Status
 export function updateCafeStatus() {
   const statusBadge = document.getElementById('hero-status-badge');
   const pulseDot = document.getElementById('status-pulse-dot');
@@ -53,30 +42,26 @@ export function updateCafeStatus() {
 
   if (!statusLabel) return;
 
-  const { decimalTime } = getSriLankaTime();
-
-  const openTime = 13.5;  // 1:30 PM
-  const closeTime = 23.0; // 11:00 PM
+  const { isWeekend, decimalTime } = getLocalClientTime();
+  const openTime = isWeekend ? CAFE_HOURS_CONFIG.weekendOpen : CAFE_HOURS_CONFIG.weekdayOpen;
+  const closeTime = isWeekend ? CAFE_HOURS_CONFIG.weekendClose : CAFE_HOURS_CONFIG.weekdayClose;
 
   let isOpen = false;
-  let label = 'Closed';
-  let sub = '';
+  let label = CAFE_HOURS_CONFIG.closedText;
+  let sub = CAFE_HOURS_CONFIG.closedSubText;
 
   if (decimalTime >= openTime && decimalTime < closeTime) {
-    // Currently Open
     isOpen = true;
-    label = 'Open Today';
-    sub = 'Closes 11:00 PM · Dine In / Takeaway';
+    label = CAFE_HOURS_CONFIG.openText;
+    sub = isWeekend ? 'Closes 10:00 PM · Coffee, Brunch & Bakery' : 'Closes 9:00 PM · Coffee, Brunch & Bakery';
   } else if (decimalTime < openTime) {
-    // Early before 1:30 PM
     isOpen = false;
     label = 'Closed Now';
-    sub = 'Opens 1:30 PM · Dehiwala & Colombo 03';
+    sub = isWeekend ? 'Opens 8:00 AM · Fresh Bakes & Coffee' : 'Opens 7:30 AM · Fresh Bakes & Coffee';
   } else {
-    // Late night after 11:00 PM
     isOpen = false;
     label = 'Closed Tonight';
-    sub = 'Opens 1:30 PM · Dehiwala & Colombo 03';
+    sub = isWeekend ? 'Opens 8:00 AM · Fresh Bakes & Coffee' : 'Opens 7:30 AM · Fresh Bakes & Coffee';
   }
 
   // Update UI Elements

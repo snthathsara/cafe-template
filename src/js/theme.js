@@ -1,10 +1,15 @@
-const THEME_STORAGE_KEY = 'melt-theme-preference';
+// ==========================================================================
+// CAFE TEMPLATE — Theme Switcher (Dark / Light Mode)
+// Persists selection via localStorage and synchronizes icons across breakpoints.
+// ==========================================================================
+
+const THEME_STORAGE_KEY = 'cafe-theme-preference';
 
 export function initTheme() {
   const toggleBtns = document.querySelectorAll('.theme-toggle-btn');
   
   // Strictly default to light mode unless the user explicitly toggled it
-  let currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || 'light';
+  let currentTheme = localStorage.getItem(THEME_STORAGE_KEY) || localStorage.getItem('melt-theme-preference') || 'light';
   
   applyTheme(currentTheme);
 

@@ -1,19 +1,14 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64" fill="none">
-  <!-- Outer Purple Ring -->
-  <circle cx="32" cy="32" r="31" fill="#35154D" stroke="#FFBA08" stroke-width="2"/>
-  <!-- Golden Yellow Face Disc -->
-  <circle cx="32" cy="32" r="27" fill="#FFBA08"/>
-  <!-- Wavy Purple Hair on Top -->
-  <path d="M19 28c-2.5-3-3-8 1-12 4-4 10-4 13-1 2-2 7-3 10-1 4 2 5 7 3 11 3 2 4 6 3 9-1 2-3 4-5 4-1 3-4 5-8 5-2 0-3-1-4-2-2 2-6 2-8 0-3 1-6-1-7-4-2-2-1-6 2-9Z" fill="#35154D"/>
-  <!-- Face Cutout / Highlights -->
-  <circle cx="28" cy="31" r="2.5" fill="#35154D"/>
-  <circle cx="38" cy="31" r="2.5" fill="#35154D"/>
-  <!-- Cute Nose -->
-  <path d="M33 34c1 1.5 2 1.5 2.5 0" stroke="#35154D" stroke-width="1.8" stroke-linecap="round"/>
-  <!-- Smiling Mouth with Tongue Licking Lip -->
-  <path d="M26 38c3 4 12 4 15 0" stroke="#35154D" stroke-width="2" stroke-linecap="round"/>
-  <path d="M33 39c0 2.5 2 4.5 4.5 4.5 2.5 0 3.5-2 3.5-4.5Z" fill="#35154D"/>
-  <!-- Playful sauce drop -->
-  <circle cx="43" cy="46" r="1.5" fill="#35154D"/>
-  <circle cx="45" cy="50" r="1" fill="#35154D"/>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48 48" fill="none">
+  <!-- Outer circle background -->
+  <circle cx="24" cy="24" r="23" fill="#2B1810" stroke="#D97706" stroke-width="2"/>
+  <!-- Steaming Coffee Cup -->
+  <path d="M14 21h17v8a7 7 0 0 1-7 7h-3a7 7 0 0 1-7-7v-8Z" fill="#FFFDF9"/>
+  <!-- Cup Handle -->
+  <path d="M31 23h3a3 3 0 0 1 3 3v2a3 3 0 0 1-3 3h-3" stroke="#FFFDF9" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Saucer / Base Plate -->
+  <path d="M12 39h21" stroke="#D97706" stroke-width="2.5" stroke-linecap="round"/>
+  <!-- Rising Aroma Wisps -->
+  <path d="M18 16c0-2 1.5-3 1.5-4.5" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M23 16c0-2.5 2-3.5 2-5.5" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
+  <path d="M28 16c0-2 1.5-3 1.5-4.5" stroke="#D97706" stroke-width="1.8" stroke-linecap="round"/>
 </svg>

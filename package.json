@@ -1,7 +1,8 @@
 {
-  "name": "melt-burgers",
+  "name": "cafe-template",
   "private": true,
   "version": "1.0.0",
+  "description": "Modern, responsive, and customizable cafe & bistro website template with dark mode, interactive menu, and mobile navigation.",
   "type": "module",
   "scripts": {
     "dev": "vite",

@@ -1,4 +1,7 @@
-// Main Application Bootstrap for Warbler’s Cafe (Kandy)
+// ==========================================================================
+// CAFE TEMPLATE — Main Application Bootstrap
+// Initializes theme, navbar, interactive menu, booking, and animations.
+// ==========================================================================
 
 import { initTheme } from './theme.js';
 import { initNavbar } from './navbar.js';
@@ -18,7 +21,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initAmbiance();
   initScrollAnimations();
 
-  // Story Highlights interaction (Sips, Ambience, Plates, Moments)
+  // Story Highlights interaction (Coffee, Brunch, Bakery, Teas)
   const highlightItems = document.querySelectorAll('.story-highlight-pill');
   highlightItems.forEach(item => {
     item.addEventListener('click', () => {
@@ -40,7 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
       e.preventDefault();
       const email = newsletterForm.querySelector('input[type="email"]')?.value;
       if (email && newsletterMsg) {
-        newsletterMsg.innerHTML = `<span style="color: var(--brand-orange); font-weight: 600;">✓ Thank you! You're on the list for MELT secret drops & burger specials.</span>`;
+        newsletterMsg.innerHTML = `<span style="color: var(--brand-orange); font-weight: 600;">✓ Thank you! You're subscribed to our seasonal updates & special events.</span>`;
         newsletterForm.reset();
       }
     });
